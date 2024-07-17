@@ -1,0 +1,374 @@
+<div class="container p-3">
+  <div class="header">
+    <h1>List of Customers</h1>
+    <button
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#addModal"
+    >
+      + Add Customer
+    </button>
+  </div>
+  <table class="mt-4">
+    <thead>
+      <tr>
+        <!-- <th scope="col">#</th> -->
+        <th scope="col">Name</th>
+        <th scope="col">Email Address</th>
+        <th scope="col">Contact Number</th>
+        <th cope="col">Options</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let customer of customers">
+        <!-- <th scope="row">{{ customer.id }}</th> -->
+        <td>{{ customer.first_name }} {{ customer.last_name }}</td>
+        <td>{{ customer.email_address }}</td>
+        <td>{{ customer.contact_number }}</td>
+        <td class="options">
+          <button
+            class="btn btn-view"
+            data-bs-toggle="modal"
+            data-bs-target="#viewModal"
+            (click)="viewCustomer(customer.id)"
+          >
+            View</button
+          ><button
+            class="btn btn-edit"
+            data-bs-toggle="modal"
+            data-bs-target="#editModal"
+            (click)="
+              patchCustomer(
+                customer.id,
+                customer.first_name,
+                customer.last_name,
+                customer.email_address,
+                customer.contact_number
+              )
+            "
+          >
+            Edit</button
+          ><button class="btn btn-delete" (click)="onDelete(customer.id)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div
+  class="modal fade"
+  id="addModal"
+  tabindex="-1"
+  aria-labelledby="addModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="addModalLabel">Customer Creation</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <form [formGroup]="profile" (ngSubmit)="onSubmit()">
+        <div class="modal-body">
+          <div class="input-group mb-2">
+            <span class="input-group-text" id="inputGroup-sizing-default"
+              >First Name</span
+            >
+            <input
+              type="text"
+              class="form-control"
+              formControlName="first_name"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default"
+              required
+            />
+          </div>
+          <div
+            class="text-danger m-2"
+            *ngIf="
+              profile.get('first_name')?.errors &&
+              profile.get('first_name')?.touched
+            "
+          >
+            Please input the first name
+          </div>
+          <div class="input-group mb-2">
+            <span class="input-group-text" id="inputGroup-sizing-default"
+              >Last Name</span
+            >
+            <input
+              type="text"
+              class="form-control"
+              formControlName="last_name"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default"
+              required
+            />
+          </div>
+          <div
+            class="text-danger m-2"
+            *ngIf="
+              profile.get('last_name')?.errors &&
+              profile.get('last_name')?.touched
+            "
+          >
+            Please input the last name
+          </div>
+          <div class="input-group mb-2">
+            <span class="input-group-text" id="inputGroup-sizing-default"
+              >Email Address</span
+            >
+            <input
+              type="text"
+              class="form-control"
+              formControlName="email_address"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default"
+              required
+            />
+          </div>
+          <div
+            class="text-danger m-2"
+            *ngIf="
+              profile.get('email_address')?.errors &&
+              profile.get('email_address')?.touched
+            "
+          >
+            Please input the email address
+          </div>
+          <div class="input-group mb-2">
+            <span class="input-group-text" id="inputGroup-sizing-default"
+              >Contact Number</span
+            >
+            <input
+              type="text"
+              class="form-control"
+              formControlName="contact_number"
+              placeholder="Format: 09123456789"
+              style="font-style: italic"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default"
+              required
+            />
+          </div>
+          <div
+            class="text-danger m-2"
+            *ngIf="
+              profile.get('contact_number')?.touched &&
+              profile.get('contact_number')?.errors &&
+              !contactNumber?.errors?.['invalidContactNumber']
+            "
+          >
+            Please input the contact number
+          </div>
+          <div
+            class="text-danger m-2"
+            *ngIf="
+              contactNumber?.errors?.['invalidContactNumber']
+            "
+          >
+            Invalid contact number. Please follow prescribed format.
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            class="btn btn-success"
+            [disabled]="profile.invalid"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="viewModal"
+  tabindex="-1"
+  aria-labelledby="viewModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="viewModalLabel">
+          Customer Information
+        </h1>
+      </div>
+      <div class="modal-body">
+        <div class="information">
+          <div class="info">
+            <h6>First Name:</h6>
+
+            {{ selectedUser.first_name }}
+          </div>
+          <div class="info">
+            <h6>Last Name:</h6>
+
+            {{ selectedUser.last_name }}
+          </div>
+          <div class="info">
+            <h6>Email Address:</h6>
+
+            {{ selectedUser.email_address }}
+          </div>
+          <div class="info">
+            <h6>Contact Number:</h6>
+
+            {{ selectedUser.contact_number }}
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="editModal"
+  tabindex="-1"
+  aria-labelledby="editModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="editModalLabel">Update Customer</h1>
+      </div>
+      <form [formGroup]="updateProfile" (ngSubmit)="onUpdate()">
+        <div class="modal-body">
+          <div class="input-group mb-2">
+            <span class="input-group-text" id="inputGroup-sizing-default"
+              >First Name</span
+            >
+            <input
+              type="text"
+              class="form-control"
+              formControlName="update_first_name"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default"
+            />
+          </div>
+          <div
+            class="text-danger m-2"
+            *ngIf="
+              updateProfile.get('update_first_name')?.errors &&
+              updateProfile.get('update_first_name')?.touched
+            "
+          >
+            Please input the first name
+          </div>
+          <div class="input-group mb-2">
+            <span class="input-group-text" id="inputGroup-sizing-default"
+              >Last Name</span
+            >
+            <input
+              type="text"
+              class="form-control"
+              formControlName="update_last_name"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default"
+            />
+          </div>
+          <div
+            class="text-danger m-2"
+            *ngIf="
+              updateProfile.get('update_last_name')?.errors &&
+              updateProfile.get('update_last_name')?.touched
+            "
+          >
+            Please input the last name
+          </div>
+          <div class="input-group mb-2">
+            <span class="input-group-text" id="inputGroup-sizing-default"
+              >Email Address</span
+            >
+            <input
+              type="text"
+              class="form-control"
+              formControlName="update_email_address"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default"
+            />
+          </div>
+          <div
+            class="text-danger m-2"
+            *ngIf="
+              updateProfile.get('update_email_address')?.errors &&
+              updateProfile.get('update_email_address')?.touched
+            "
+          >
+            Please input the email address
+          </div>
+          <div class="input-group mb-2">
+            <span class="input-group-text" id="inputGroup-sizing-default"
+              >Contact Number</span
+            >
+            <input
+              type="text"
+              class="form-control"
+              formControlName="update_contact_number"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default"
+            />
+          </div>
+          <div
+            class="text-danger m-2"
+            *ngIf="
+              updateProfile.get('update_contact_number')?.touched &&
+              updateProfile.get('update_contact_number')?.errors &&
+              !updateContact?.errors?.['invalidContactNumber']
+            "
+          >
+            Please input the contact number
+          </div>
+          <div
+            class="text-danger m-2"
+            *ngIf="
+            updateContact?.errors?.['invalidContactNumber']
+          "
+          >
+            Invalid contact number. Please follow prescribed format.
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            class="btn btn-success"
+            [disabled]="updateProfile.invalid"
+          >
+            Save changes
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+th {
+  width: 15%;
+}
+
+thead tr {
+  border-bottom: 1px solid black;
+  height: 8vh;
+  font-size: 1.1rem;
+}
+
+td button {
+  margin: 1%;
+  width: 30%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+table {
+  background: linear-gradient(to bottom, rgb(219, 250, 198), #e7f3ef);
+  padding: 2%;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.information {
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 300;
+}
+
+.info h6 {
+  font-weight: 1000 !important;
+}
+
+.btn-view {
+  background-color: rgba(0, 0, 88, 0.329);
+}
+
+.btn-edit {
+  background-color: rgba(231, 231, 10, 0.527);
+}
+
+.btn-delete {
+  background-color: rgba(168, 29, 29, 0.342);
+}
+
+tr .btn:hover {
+  background-color: transparent;
+  transition: 0.5s;
+  border: 1px solid rgb(20, 58, 20);
+}
