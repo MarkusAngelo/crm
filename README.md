@@ -98,8 +98,15 @@ This challenge requires you to write a simple CRUD application that manages reco
 4. To edit the customer's data, click the 'Edit' button under the Options column.
     ![image](https://github.com/user-attachments/assets/ab853469-3379-4f11-a8d2-028e43b524c4)
 
+5. Input the change to be made to the customer's data and click the 'Save Changes' button when finished.    
+    ![image](https://github.com/user-attachments/assets/8b904ca4-641d-45fc-8938-a8e6d9f70466)
 
-5. The name of the color will also be displayed alongside their respective hex code and color code.
+6. To delete the customer's data, click the 'Delete' button under the Options column first.
+    ![image](https://github.com/user-attachments/assets/c6f823b5-ba52-445a-be8a-c1118e088a9f)
+
+7. Click the 'Confirm' button to finally delete the customer's data.  
+    ![image](https://github.com/user-attachments/assets/b9d34d45-109e-4323-a315-006f2f5387a3)
+
 
 # LICENSE
 
