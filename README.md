@@ -56,7 +56,7 @@ This challenge requires you to write a simple CRUD application that manages reco
        3.3. Install Angular dependencies  
                ![image](https://github.com/user-attachments/assets/faef6da1-51c3-4658-ba03-3445241cf2c2)  
    
-   **LARAVEL**
+   **LARAVEL**  
        3.3. Download Composer [here](https://getcomposer.org/download/) and install it  
                ![image](https://github.com/user-attachments/assets/fe6833b2-ccff-4de7-bb88-3d23849ade02)  
        3.4. Navigate to crm-laravel  
@@ -64,7 +64,7 @@ This challenge requires you to write a simple CRUD application that manages reco
        3.5. Install Laravel dependencies  
                ![image](https://github.com/user-attachments/assets/6c81c0ea-0f2b-47cb-9edd-92ed6a955212)  
 
-   **MYSQL**
+   **MYSQL**  
        3.6. Download XAMPP [here](https://www.apachefriends.org/download.html) and install it  
                ![image](https://github.com/user-attachments/assets/10a385b7-7873-4da4-b0b4-77f1787c3a29)  
 
@@ -74,7 +74,7 @@ This challenge requires you to write a simple CRUD application that manages reco
        4.1. Run the following command within the angular-crm directory  
                ![image](https://github.com/user-attachments/assets/69ca41a6-b3a7-4ec2-88e8-a32496cbd662)  
    
-   **LARAVEL** 
+   **LARAVEL**   
        4.2. Run the following command within the crm-laravel directory  
                ![image](https://github.com/user-attachments/assets/8426aabe-456a-4ea7-acae-9aae79535a4b)  
    
