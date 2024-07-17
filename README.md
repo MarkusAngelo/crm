@@ -85,7 +85,7 @@ This challenge requires you to write a simple CRUD application that manages reco
 # USAGE
 
 1. Click the '+ Add Customer' button to add new customer.
-    ![image](https://github.com/user-attachments/assets/cf40044b-a039-4955-993a-c1fb2f5751b7)
+    ![image](https://github.com/user-attachments/assets/5b39239b-913a-4a32-b0a1-1a869a951d8a)  
 
 2. Input the required data: First Name, Last Name, Email Address, and Contact Number, and click the 'Submit' button when finished.
     ![image](https://github.com/user-attachments/assets/1a3ddbf0-e462-406e-8f63-b1883b435600)
